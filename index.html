@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Camu - Login</title>
+  <link rel="stylesheet" href="style.css"/>
+  <script>
+    function togglePassword() {
+      const inp = document.getElementById('password');
+      inp.type = (inp.type === 'password') ? 'text' : 'password';
+    }
+    function login(e){
+      e.preventDefault();
+      const user = document.getElementById('username').value.trim();
+      const pass = document.getElementById('password').value.trim();
+      // Institution Code is intentionally not validated (dummy app)
+      if(user === "S24CSEU0613" && pass === "1234"){
+        window.location.href = "profile.html";
+      } else {
+        alert("Invalid Username or Password");
+      }
+    }
+  </script>
+</head>
+<body class="login-body">
+
+  <!-- Top bar -->
+  <header class="top-bar">
+    <img src="c:\Users\prana\OneDrive\Desktop\camu app\camu logo.jpg" alt="Camu Logo" class="camu-logo"/>
+    <button class="create-account" type="button">Create an account</button>
+  </header>
+
+  <!-- University -->
+  <section class="university-section">
+    <img src="c:\Users\prana\OneDrive\Desktop\camu app\bennett logo.jpg" alt="Bennett University Logo" class="bu-logo"/>
+    <h2 class="bu-name">Bennett University</h2>
+    <a href="#" class="not-from">Not from Bennett University?</a>
+  </section>
+
+  <!-- Login form -->
+  <form class="login-form" onsubmit="login(event)">
+    
+
+    <label for="username">Username</label>
+    <input id="username" type="text" placeholder="Enter username" autocomplete="username"/>
+
+    <label for="password">Password</label>
+    <div class="password-wrapper">
+      <input id="password" type="password" placeholder="Enter password" autocomplete="current-password"/>
+      <button type="button" class="eye" aria-label="Show/Hide password" onclick="togglePassword()"></button>
+    </div>
+
+    <a href="#" class="forgot">Forgot password?</a>
+
+    <button type="submit" class="login-btn">Login</button>
+  </form>
+
+  <!-- OR divider -->
+  <div class="or-divider"><span>OR</span></div>
+
+  <!-- Social -->
+  <div class="social-buttons">
+    <button class="social-btn">
+      <img src="c:\Users\prana\OneDrive\Desktop\camu app\goggle logo.jpg" alt="" /> Continue with Google
+    </button>
+    <button class="social-btn">
+      <img src="c:\Users\prana\OneDrive\Desktop\camu app\microsoft_logo.jpg" alt="" /> Continue with Microsoft
+    </button>
+  </div>
+
+
+
+  <script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/service-worker.js')
+    .then(() => console.log('Service Worker Registered'))
+    .catch(err => console.log('Service Worker Error:', err));
+}
+</script>
+
+
+</body>
+</html>

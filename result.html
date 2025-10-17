@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Final Result</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    function openMenu(){ 
+      document.getElementById('drawer').classList.add('open'); 
+      document.getElementById('overlay').classList.add('show');
+    }
+    function closeMenu(){ 
+      document.getElementById('drawer').classList.remove('open'); 
+      document.getElementById('overlay').classList.remove('show');
+    }
+    function logout(){
+      window.location.href = "index.html";
+    }
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape'){ closeMenu(); }
+    });
+    </script>
+</head>
+<body>
+
+    <!-- Top navigation -->
+  <header class="profile-header">
+    <button class="menu-btn" aria-label="Open menu" onclick="openMenu()">☰</button>
+    <h1 class="header-title">Bennett University</h1>
+  </header>
+
+  <!-- Overlay -->
+  <div id="overlay" class="overlay" onclick="closeMenu()" aria-hidden="true"></div>
+
+  <!-- Drawer / Side menu -->
+  <aside id="drawer" class="drawer" aria-label="Main menu">
+    <div class="drawer-header">
+      <img src="MY PIC.jpg" alt="Profile" class="drawer-avatar"/>
+      <div>
+        <div class="drawer-name">PRANAV PUSHKAR</div>
+        <div class="drawer-sub">S24CSEU0613</div>
+      </div>
+    </div>
+
+    <nav class="drawer-nav">
+      <button onclick="location.href='institution.html'">MY INSTITUTION</button>
+      <button onclick="location.href='messages.html'">MESSAGES</button>
+      <button onclick="location.href='attendance.html'">ATTENDANCE</button>
+      <button onclick="location.href='examschedule.html'">EXAM SHEDULES</button>
+      <button onclick="location.href='Reports.html'">REPORTS</button>
+      <button onclick="location.href='progress_report.html'">PROGRESS REPORT</button>
+      <button onclick="location.href='holiday.html'">HOLIDAYS</button>
+      <button onclick="location.href='cafeteria.html'">CAFETERIA</button>
+      <button onclick="location.href='timetable.html'">TIMETABLE</button>
+      <button onclick="location.href='leave.html'">LEAVE AND GATE PASS</button>
+      <button onclick="location.href='services.html'">SERVICES</button>
+      <button onclick="location.href='enrollment.html'">ENROLLMENT</button>
+      <button onclick="location.href='activity.html'">ACTIVITY</button>
+      <button onclick="location.href='Clearance.html'">CLEARANCE</button>
+      <button onclick="location.href='announcement.html'">ANNOUNCEMENT</button>
+      <button onclick="location.href='feedback.html'">FEEDBACK</button>
+      <button onclick="location.href='project.html'">PROJECT</button>
+      <button onclick="location.href='portfolio.html'">E PORTFOLIO</button>
+      <button onclick="location.href='result.html'">FINAL RESULT</button>
+    </nav>
+
+    <div class="drawer-footer">
+      <button class="logout-btn" onclick="logout()">LOG OUT</button>
+    </div>
+  </aside>
+
+
+
+  
+  <!-- Profile Card -->
+  <section class="profile-card">
+    <img src="MY PIC.jpg" alt="Profile Photo" class="profile-img">
+    <div class="profile-info">
+      <h2>PRANAV PUSHKAR</h2>
+      <p>Bennett University</p>
+      <p>Semester - 3 | 2025-2026</p>
+    </div>
+  </section>
+
+  <!-- MAIN CONTENT -->
+  <main class="content">
+    <h2 class="section-title">Final result</h2>
+
+    <!-- TABS -->
+    <div class="tabs">
+      <button class="tab-btn active" onclick="showTab('last')">Last semester</button>
+      <button class="tab-btn" onclick="showTab('previous')">Previous semesters</button>
+    </div>
+
+    <!-- LAST SEMESTER -->
+    <section id="last" class="tab-content active">
+      <div class="semester-card">
+        <div class="card-header">
+          <p>SEM-2-SUPPLEMENTARY (JUL-2025) / CREDIT REGISTERED : 9 / CREDIT COMPLETED : 9</p>
+          <div class="dropdown">
+            <button class="dropbtn">Action ▼</button>
+            <div class="dropdown-content">
+              <a href="#">Download</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- SUBJECT RESULTS -->
+        <div class="result-item">
+          <p><strong>COURSE CODE:</strong> CSET106</p>
+          <p><strong>COURSE NAME:</strong> Discrete Mathematical Structures</p>
+          <p><strong>CREDIT:</strong> 4</p>
+          <p><strong>GRADE POINT:</strong> 6</p>
+          <p><strong>GRADES:</strong> C+</p>
+          <p><strong>RESULT STATUS:</strong> <span class="status pass">Pass</span></p>
+        </div>
+
+        <div class="result-item">
+          <p><strong>COURSE CODE:</strong> CSET202</p>
+          <p><strong>COURSE NAME:</strong> Database Management Systems</p>
+          <p><strong>CREDIT:</strong> 3</p>
+          <p><strong>GRADE POINT:</strong> 8</p>
+          <p><strong>GRADES:</strong> B+</p>
+          <p><strong>RESULT STATUS:</strong> <span class="status pass">Pass</span></p>
+        </div>
+
+        <div class="result-item">
+          <p><strong>COURSE CODE:</strong> CSET210</p>
+          <p><strong>COURSE NAME:</strong> Operating Systems</p>
+          <p><strong>CREDIT:</strong> 2</p>
+          <p><strong>GRADE POINT:</strong> 7</p>
+          <p><strong>GRADES:</strong> B</p>
+          <p><strong>RESULT STATUS:</strong> <span class="status pass">Pass</span></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PREVIOUS SEMESTERS -->
+    <section id="previous" class="tab-content">
+      <!-- SEMESTER BUTTONS -->
+      <div class="semester-box" onclick="showSemester('sem2')">
+        <div class="box-header">
+          <p>SEMESTER - 2 (MAY-2025)</p>
+          <button class="dropbtn">Action ▼</button>
+        </div>
+      </div>
+
+      <div class="semester-box" onclick="showSemester('sem1')">
+        <div class="box-header">
+          <p>SEMESTER - 1 (DEC-2024)</p>
+          <button class="dropbtn">Action ▼</button>
+        </div>
+      </div>
+
+      <!-- RESULTS FOR SEM 2 -->
+      <div id="sem2" class="semester-card hidden">
+        <div class="card-header">
+          <p>Semester - 2 Results</p>
+        </div>
+
+        <div class="result-item">
+          <p><strong>COURSE CODE:</strong> CSET201</p>
+          <p><strong>COURSE NAME:</strong> Data Structures</p>
+          <p><strong>CREDIT:</strong> 4</p>
+          <p><strong>GRADE POINT:</strong> 8</p>
+          <p><strong>GRADES:</strong> B+</p>
+          <p><strong>RESULT STATUS:</strong> <span class="status pass">Pass</span></p>
+        </div>
+
+        <div class="result-item">
+          <p><strong>COURSE CODE:</strong> CSET203</p>
+          <p><strong>COURSE NAME:</strong> Computer Networks</p>
+          <p><strong>CREDIT:</strong> 3</p>
+          <p><strong>GRADE POINT:</strong> 7</p>
+          <p><strong>GRADES:</strong> B</p>
+          <p><strong>RESULT STATUS:</strong> <span class="status pass">Pass</span></p>
+        </div>
+
+        <div class="result-item">
+          <p><strong>COURSE CODE:</strong> MATH201</p>
+          <p><strong>COURSE NAME:</strong> Probability & Statistics</p>
+          <p><strong>CREDIT:</strong> 2</p>
+          <p><strong>GRADE POINT:</strong> 9</p>
+          <p><strong>GRADES:</strong> A</p>
+          <p><strong>RESULT STATUS:</strong> <span class="status pass">Pass</span></p>
+        </div>
+      </div>
+
+      <!-- RESULTS FOR SEM 1 -->
+      <div id="sem1" class="semester-card hidden">
+        <div class="card-header">
+          <p>Semester - 1 Results</p>
+        </div>
+
+        <div class="result-item">
+          <p><strong>COURSE CODE:</strong> CSET101</p>
+          <p><strong>COURSE NAME:</strong> Introduction to Programming</p>
+          <p><strong>CREDIT:</strong> 4</p>
+          <p><strong>GRADE POINT:</strong> 9</p>
+          <p><strong>GRADES:</strong> A</p>
+          <p><strong>RESULT STATUS:</strong> <span class="status pass">Pass</span></p>
+        </div>
+
+        <div class="result-item">
+          <p><strong>COURSE CODE:</strong> ENG101</p>
+          <p><strong>COURSE NAME:</strong> Technical Communication</p>
+          <p><strong>CREDIT:</strong> 3</p>
+          <p><strong>GRADE POINT:</strong> 7</p>
+          <p><strong>GRADES:</strong> B</p>
+          <p><strong>RESULT STATUS:</strong> <span class="status pass">Pass</span></p>
+        </div>
+
+        <div class="result-item">
+          <p><strong>COURSE CODE:</strong> MATH101</p>
+          <p><strong>COURSE NAME:</strong> Engineering Mathematics</p>
+          <p><strong>CREDIT:</strong> 3</p>
+          <p><strong>GRADE POINT:</strong> 8</p>
+          <p><strong>GRADES:</strong> B+</p>
+          <p><strong>RESULT STATUS:</strong> <span class="status pass">Pass</span></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+  <script>
+    // Switch between tabs
+    function showTab(tab) {
+      document.querySelectorAll('.tab-content').forEach(sec => sec.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.getElementById(tab).classList.add('active');
+      event.target.classList.add('active');
+    }
+
+    // Show results for semester
+    function showSemester(sem) {
+      document.querySelectorAll('#previous .semester-card').forEach(card => card.classList.add('hidden'));
+      document.getElementById(sem).classList.remove('hidden');
+    }
+  </script>
+</body>
+</html>

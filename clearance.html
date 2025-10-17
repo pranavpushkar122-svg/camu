@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bennett University</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script>
+    function openMenu(){ 
+      document.getElementById('drawer').classList.add('open'); 
+      document.getElementById('overlay').classList.add('show');
+    }
+    function closeMenu(){ 
+      document.getElementById('drawer').classList.remove('open'); 
+      document.getElementById('overlay').classList.remove('show');
+    }
+    function logout(){
+      window.location.href = "index.html";
+    }
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape'){ closeMenu(); }
+    });
+    </script>
+</head>
+<body>
+
+
+    
+  <!-- Top navigation -->
+  <header class="profile-header">
+    <button class="menu-btn" aria-label="Open menu" onclick="openMenu()">☰</button>
+    <h1 class="header-title">Bennett University</h1>
+  </header>
+
+  <!-- Overlay -->
+  <div id="overlay" class="overlay" onclick="closeMenu()" aria-hidden="true"></div>
+
+  <!-- Drawer / Side menu -->
+  <aside id="drawer" class="drawer" aria-label="Main menu">
+    <div class="drawer-header">
+      <img src="MY PIC.jpg" alt="Profile" class="drawer-avatar"/>
+      <div>
+        <div class="drawer-name">PRANAV PUSHKAR</div>
+        <div class="drawer-sub">S24CSEU0613</div>
+      </div>
+    </div>
+
+    <nav class="drawer-nav">
+      <button onclick="location.href='institution.html'">MY INSTITUTION</button>
+      <button onclick="location.href='messages.html'">MESSAGES</button>
+      <button onclick="location.href='attendance.html'">ATTENDANCE</button>
+      <button onclick="location.href='examschedule.html'">EXAM SHEDULES</button>
+      <button onclick="location.href='Reports.html'">REPORTS</button>
+      <button onclick="location.href='progress_report.html'">PROGRESS REPORT</button>
+      <button onclick="location.href='holiday.html'">HOLIDAYS</button>
+      <button onclick="location.href='cafeteria.html'">CAFETERIA</button>
+      <button onclick="location.href='timetable.html'">TIMETABLE</button>
+      <button onclick="location.href='leave.html'">LEAVE AND GATE PASS</button>
+      <button onclick="location.href='services.html'">SERVICES</button>
+      <button onclick="location.href='enrollment.html'">ENROLLMENT</button>
+      <button onclick="location.href='activity.html'">ACTIVITY</button>
+      <button onclick="location.href='Clearance.html'">CLEARANCE</button>
+      <button onclick="location.href='announcement.html'">ANNOUNCEMENT</button>
+      <button onclick="location.href='feedback.html'">FEEDBACK</button>
+      <button onclick="location.href='project.html'">PROJECT</button>
+      <button onclick="location.href='portfolio.html'">E PORTFOLIO</button>
+      <button onclick="location.href='result.html'">FINAL RESULT</button>
+    </nav>
+
+    <div class="drawer-footer">
+      <button class="logout-btn" onclick="logout()">LOG OUT</button>
+    </div>
+  </aside>
+
+
+  
+  <!-- Profile Card -->
+  <section class="profile-card">
+    <img src="MY PIC.jpg" alt="Profile Photo" class="profile-img">
+    <div class="profile-info">
+      <h2>PRANAV PUSHKAR</h2>
+      <p>Bennett University</p>
+      <p>Semester - 3 | 2025-2026</p>
+    </div>
+  </section>
+
+  <!-- Clearance Section -->
+  <div class="section-title">Clearance</div>
+  
+  <!-- Tabs -->
+  <div class="tabs">
+    <button class="tab active" onclick="showTab('onhold')">On hold</button>
+    <button class="tab" onclick="showTab('cleared')">Cleared</button>
+  </div>
+
+  <!-- Content -->
+  <div id="onhold" class="tab-content active">
+    <div class="info-box"><i class="fa fa-info-circle"></i> No record(s) found.</div>
+  </div>
+  <div id="cleared" class="tab-content">
+    <div class="info-box"><i class="fa fa-info-circle"></i> No record(s) found.</div>
+  </div>
+
+  
+
+  <!-- Script for Tabs -->
+  <script>
+    function showTab(tabId) {
+      document.querySelectorAll(".tab").forEach(btn => btn.classList.remove("active"));
+      document.querySelectorAll(".tab-content").forEach(content => content.classList.remove("active"));
+
+      document.querySelector("button[onclick=\"showTab('" + tabId + "')\"]").classList.add("active");
+      document.getElementById(tabId).classList.add("active");
+    }
+  </script>
+
+</body>
+</html>

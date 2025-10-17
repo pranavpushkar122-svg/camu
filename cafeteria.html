@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bennett University - Cafeteria</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    function openMenu(){ 
+      document.getElementById('drawer').classList.add('open'); 
+      document.getElementById('overlay').classList.add('show');
+    }
+    function closeMenu(){ 
+      document.getElementById('drawer').classList.remove('open'); 
+      document.getElementById('overlay').classList.remove('show');
+    }
+    function logout(){
+      window.location.href = "index.html";
+    }
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape'){ closeMenu(); }
+    });
+    </script>
+</head>
+
+<body>
+
+    
+  <!-- Top navigation -->
+  <header class="profile-header">
+    <button class="menu-btn" aria-label="Open menu" onclick="openMenu()">☰</button>
+    <h1 class="header-title">Bennett University</h1>
+  </header>
+
+  <!-- Overlay -->
+  <div id="overlay" class="overlay" onclick="closeMenu()" aria-hidden="true"></div>
+
+  <!-- Drawer / Side menu -->
+  <aside id="drawer" class="drawer" aria-label="Main menu">
+    <div class="drawer-header">
+      <img src="MY PIC.jpg" alt="Profile" class="drawer-avatar"/>
+      <div>
+        <div class="drawer-name">PRANAV PUSHKAR</div>
+        <div class="drawer-sub">S24CSEU0613</div>
+      </div>
+    </div>
+
+    <nav class="drawer-nav">
+      <button onclick="window.location.href='institution.html'">MY INSTITUTION</button>
+      <button onclick="window.location.href='messages.html'">MESSAGES</button>
+      <button onclick="location.href='attendance.html'">ATTENDANCE</button>
+      <button onclick="location.href='examschedule.html'">EXAM SHEDULES</button>
+      <button onclick="location.href='Reports.html'">REPORTS</button>
+      <button onclick="location.href='progress_report.html'">PROGRESS REPORT</button>
+      <button onclick="location.href='holiday.html'">HOLIDAYS</button>
+      <button onclick="location.href='cafeteria.html'">CAFETERIA</button>
+      <button onclick="location.href='timetable.html'">TIMETABLE</button>
+      <button onclick="location.href='leave.html'">LEAVE AND GATE PASS</button>
+      <button onclick="location.href='services.html'">SERVICES</button>
+      <button onclick="location.href='enrollment.html'">ENROLLMENT</button>
+      <button onclick="location.href='activity.html'">ACTIVITY</button>
+      <button onclick="location.href='Clearance.html'">CLEARANCE</button>
+      <button onclick="location.href='announcement.html'">ANNOUNCEMENT</button>
+      <button onclick="location.href='feedback.html'">FEEDBACK</button>
+      <button onclick="location.href='project.html'">PROJECT</button>
+      <button onclick="location.href='portfolio.html'">E PORTFOLIO</button>
+      <button onclick="location.href='result.html'">FINAL RESULT</button>
+    </nav>
+
+    <div class="drawer-footer">
+      <button class="logout-btn" onclick="logout()">LOG OUT</button>
+    </div>
+  </aside>
+
+  
+  <!-- Profile Card -->
+  <section class="profile-card">
+    <img src="MY PIC.jpg" alt="Profile Photo" class="profile-img">
+    <div class="profile-info">
+      <h2>PRANAV PUSHKAR</h2>
+      <p>Bennett University</p>
+      <p>Semester - 3 | 2025-2026</p>
+    </div>
+  </section>
+
+
+ 
+  <main>
+    <section class="cafeteria-info">
+      
+      <div class="qr-section">
+        <p class="qr-text">Do you want to generate a reusable permanent QR code?</p>
+        <button id="showQR">Show my reusable QR code</button>
+        <button id="regenQR" class="blue-btn">Regenerate my reusable QR code</button>
+        <div id="qrContainer" class="qr-container"></div>
+      </div>
+    </section>
+
+    <section class="menu-section">
+      <select id="daySelect">
+        <option value="">-- Select Day --</option>
+        <option value="monday">Monday</option>
+        <option value="tuesday">Tuesday</option>
+        <option value="wednesday">Wednesday</option>
+        <option value="thursday">Thursday</option>
+        <option value="friday">Friday</option>
+        <option value="saturday">Saturday</option>
+        <option value="sunday">Sunday</option>
+      </select>
+      <div id="menuDisplay" class="menu-display"></div>
+    </section>
+  </main>
+
+  <script>
+    // Sample menu data
+    const menus = {
+      monday: {
+        breakfast: "Poha (150 kcal), Tea (80 kcal)",
+        lunch: "Dal, Rice, Chapati, Salad",
+        snacks: "Samosa, Tea",
+        dinner: "Paneer Curry, Rice, Chapati"
+      },
+      tuesday: {
+        breakfast: "Idli, Sambar",
+        lunch: "Rajma, Rice, Chapati",
+        snacks: "Pakora, Coffee",
+        dinner: "Mix Veg, Rice, Chapati"
+      },
+      wednesday: {
+        breakfast: "Aloo Paratha, Curd",
+        lunch: "Chole, Rice, Chapati",
+        snacks: "Bhel Puri, Tea",
+        dinner: "Veg Pulao, Raita"
+      },
+      thursday: {
+        breakfast: "Upma, Chutney",
+        lunch: "Kadhi, Rice, Chapati",
+        snacks: "Sandwich, Coffee",
+        dinner: "Dal Fry, Rice, Chapati"
+      },
+      friday: {
+        breakfast: "Mix Veg Upma (110 kcal), Tomato Peanut Chutney (240 kcal)",
+        lunch: "Veg Biryani, Raita",
+        snacks: "Pasta, Tea",
+        dinner: "Paneer Butter Masala, Rice, Chapati"
+      },
+      saturday: {
+        breakfast: "Omelette, Bread",
+        lunch: "Mutton Curry, Rice, Chapati",
+        snacks: "Veg Puff, Tea",
+        dinner: "Chicken Curry, Rice, Chapati"
+      },
+      sunday: {
+        breakfast: "Masala Dosa, Chutney",
+        lunch: "Fish Curry, Rice, Chapati",
+        snacks: "Burger, Coffee",
+        dinner: "Veg Korma, Rice, Chapati"
+      }
+    };
+
+    document.getElementById('daySelect').addEventListener('change', function() {
+      const day = this.value;
+      const display = document.getElementById('menuDisplay');
+      if (menus[day]) {
+        display.innerHTML = `
+          <h3>Breakfast</h3><p>${menus[day].breakfast}</p>
+          <h3>Lunch</h3><p>${menus[day].lunch}</p>
+          <h3>Snacks</h3><p>${menus[day].snacks}</p>
+          <h3>Dinner</h3><p>${menus[day].dinner}</p>
+        `;
+      } else {
+        display.innerHTML = "";
+      }
+    });
+
+    // QR Code simulation
+    function generateQR() {
+      document.getElementById('qrContainer').innerHTML = `<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=SampleQR" alt="QR Code">`;
+    }
+
+    document.getElementById('showQR').addEventListener('click', generateQR);
+    document.getElementById('regenQR').addEventListener('click', generateQR);
+  </script>
+</body>
+</html>

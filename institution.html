@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Camu - My Institution</title>
+  <link rel="stylesheet" href="style.css"/>
+  <script>
+    function openMenu(){ 
+      document.getElementById('drawer').classList.add('open'); 
+      document.getElementById('overlay').classList.add('show');
+    }
+    function closeMenu(){ 
+      document.getElementById('drawer').classList.remove('open'); 
+      document.getElementById('overlay').classList.remove('show');
+    }
+    function logout(){
+      window.location.href = "index.html";
+    }
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape'){ closeMenu(); }
+    });
+
+    function showTab(tabName) {
+      const messages = {
+        circular: "No circular(s) available.",
+        notice: "No notice(s) available.",
+        curriculum: "No curriculum or syllabus available.",
+        policies: "No policies & regulation(s) available."
+      };
+      document.getElementById("tab-message").innerText = messages[tabName];
+      document.querySelectorAll(".inst-tab").forEach(btn => btn.classList.remove("active"));
+      document.getElementById(tabName + "-tab").classList.add("active");
+    }
+  </script>
+</head>
+<body>
+
+  <!-- Top navigation -->
+  <header class="profile-header">
+    <button class="menu-btn" aria-label="Open menu" onclick="openMenu()">☰</button>
+    <h1 class="header-title">Bennett University</h1>
+  </header>
+
+  <!-- Overlay -->
+  <div id="overlay" class="overlay" onclick="closeMenu()" aria-hidden="true"></div>
+
+  <!-- Drawer / Side menu -->
+  <aside id="drawer" class="drawer" aria-label="Main menu">
+    <div class="drawer-header">
+      <img src="MY PIC.jpg" alt="Profile" class="drawer-avatar"/>
+      <div>
+        <div class="drawer-name">PRANAV PUSHKAR</div>
+        <div class="drawer-sub">S24CSEU0613</div>
+      </div>
+    </div>
+
+    <nav class="drawer-nav">
+      <button onclick="window.location.href='institution.html'">MY INSTITUTION</button>
+      <button onclick="window.location.href='messages.html'">MESSAGES</button>
+      <button onclick="location.href='attendance.html'">ATTENDANCE</button>
+      <button onclick="location.href='examschedule.html'">EXAM SHEDULES</button>
+      <button onclick="location.href='Reports.html'">REPORTS</button>
+      <button onclick="location.href='progress_report.html'">PROGRESS REPORT</button>
+      <button onclick="location.href='holiday.html'">HOLIDAYS</button>
+      <button onclick="location.href='cafeteria.html'">CAFETERIA</button>
+      <button onclick="location.href='timetable.html'">TIMETABLE</button>
+      <button onclick="location.href='leave.html'">LEAVE AND GATE PASS</button>
+      <button onclick="location.href='services.html'">SERVICES</button>
+      <button onclick="location.href='enrollment.html'">ENROLLMENT</button>
+      <button onclick="location.href='activity.html'">ACTIVITY</button>
+      <button onclick="location.href='Clearance.html'">CLEARANCE</button>
+      <button onclick="location.href='announcement.html'">ANNOUNCEMENT</button>
+      <button onclick="location.href='feedback.html'">FEEDBACK</button>
+      <button onclick="location.href='project.html'">PROJECT</button>
+      <button onclick="location.href='portfolio.html'">E PORTFOLIO</button>
+      <button onclick="location.href='result.html'">FINAL RESULT</button>
+    </nav>
+    
+
+    <div class="drawer-footer">
+      <button class="logout-btn" onclick="logout()">LOG OUT</button>
+    </div>
+  </aside>
+
+
+
+  <!-- Profile Card -->
+  <section class="profile-card">
+    <img src="MY PIC.jpg" alt="Profile Photo" class="profile-img">
+    <div class="profile-info">
+      <h2>PRANAV PUSHKAR</h2>
+      <p>Bennett University</p>
+      <p>Semester - 3 | 2025-2026</p>
+    </div>
+  </section>
+  
+
+  <!-- Main content -->
+  <main class="content">
+
+    <!-- Vision & Mission -->
+    <section class="panel white-panel">
+      <h3 class="panel-title">Our Vision</h3>
+      <p>Not available</p>
+    </section>
+
+    <section class="panel white-panel">
+      <h3 class="panel-title">Our Mission</h3>
+      <p>Not available</p>
+    </section>
+
+    <!-- Tabs -->
+    <div class="inst-tabs">
+      <button id="circular-tab" class="inst-tab active" onclick="showTab('circular')">Circular</button>
+      <button id="notice-tab" class="inst-tab" onclick="showTab('notice')">Notice Board</button>
+      <button id="curriculum-tab" class="inst-tab" onclick="showTab('curriculum')">Curriculum & Syllabus</button>
+      <button id="policies-tab" class="inst-tab" onclick="showTab('policies')">Policies & Regulations</button>
+    </div>
+
+    <!-- Tab Message -->
+    <div class="info-box" id="tab-message">No circular(s) available.</div>
+
+  </main>
+</body>
+</html>

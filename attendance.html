@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Attendance</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- HEADER -->
+  <header class="profile-header">
+    <button class="menu-btn" onclick="openDrawer()">☰</button>
+    <h1 class="header-title">Bennett University</h1>
+  </header>
+
+  <!-- OVERLAY + DRAWER -->
+  <div class="overlay" onclick="closeDrawer()"></div>
+  <aside class="drawer">
+    <div class="drawer-header">
+      <img src="MY PIC.jpg" class="drawer-avatar">
+      <div>
+        <div class="drawer-name">PRANAV PUSHKAR</div>
+        <div class="drawer-sub">S24CSEU0613</div>
+      </div>
+    </div>
+    <nav class="drawer-nav">
+      <button onclick="location.href='institution.html'">MY INSTITUTION</button>
+      <button onclick="location.href='messages.html'">MESSAGES</button>
+      <button onclick="location.href='attendance.html'">ATTENDANCE</button>
+      <button onclick="location.href='examschedule.html'">EXAM SHEDULES</button>
+      <button onclick="location.href='Reports.html'">REPORTS</button>
+      <button onclick="location.href='progress_report.html'">PROGRESS REPORT</button>
+      <button onclick="location.href='holiday.html'">HOLIDAYS</button>
+      <button onclick="location.href='cafeteria.html'">CAFETERIA</button>
+      <button onclick="location.href='timetable.html'">TIMETABLE</button>
+      <button onclick="location.href='leave.html'">LEAVE AND GATE PASS</button>
+      <button onclick="location.href='services.html'">SERVICES</button>
+      <button onclick="location.href='enrollment.html'">ENROLLMENT</button>
+      <button onclick="location.href='activity.html'">ACTIVITY</button>
+      <button onclick="location.href='Clearance.html'">CLEARANCE</button>
+      <button onclick="location.href='announcement.html'">ANNOUNCEMENT</button>
+      <button onclick="location.href='feedback.html'">FEEDBACK</button>
+      <button onclick="location.href='project.html'">PROJECT</button>
+      <button onclick="location.href='portfolio.html'">E PORTFOLIO</button>
+      <button onclick="location.href='result.html'">FINAL RESULT</button>
+    </nav>
+    <div class="drawer-footer">
+      <button class="logout-btn">Logout</button>
+    </div>
+  </aside>
+   
+
+
+  <!-- Profile Card -->
+  <section class="profile-card">
+    <img src="MY PIC.jpg" alt="Profile Photo" class="profile-img">
+    <div class="profile-info">
+      <h2>PRANAV PUSHKAR</h2>
+      <p>Bennett University</p>
+      <p>Semester - 3 | 2025-2026</p>
+    </div>
+  </section>
+
+
+  <!-- PAGE CONTENT -->
+  <div class="attendance-container">
+    <div class="dropdown">
+      <select>
+        <option>Semester 2</option>
+        <option>Semester 1</option>
+      </select>
+    </div>
+
+    <!-- Main Tabs -->
+    <div class="tabs">
+      <button class="tab-btn active" onclick="showTab('subject')">Subject-wise</button>
+      <button class="tab-btn" onclick="showTab('absence')">Absence log</button>
+    </div>
+
+    <!-- Subject-wise Content -->
+    <div id="subject-tab" class="tab-content">
+      <div class="sub-tabs">
+        <button class="sub-tab-btn active" onclick="showSubTab('present')">Present</button>
+        <button class="sub-tab-btn" onclick="showSubTab('overall')">Over all</button>
+      </div>
+
+      <!-- Present View -->
+      <div id="present-view" class="chart-container">
+        <div class="circle">
+          <div class="circle-inner">100%</div>
+        </div>
+        <p>Attendance</p>
+      </div>
+
+      <!-- Overall View -->
+      <div id="overall-view" class="chart-container" style="display:none;">
+        <canvas id="barChart" width="300" height="200"></canvas>
+      </div>
+    </div>
+
+    <!-- Absence log -->
+    <div id="absence-tab" class="tab-content" style="display:none;">
+      <div class="info-box">
+        <span>ℹ</span> No absence log available!
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    function openDrawer() {
+      document.querySelector('.drawer').classList.add('open');
+      document.querySelector('.overlay').classList.add('show');
+    }
+    function closeDrawer() {
+      document.querySelector('.drawer').classList.remove('open');
+      document.querySelector('.overlay').classList.remove('show');
+    }
+
+    function showTab(tab) {
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.style.display = 'none');
+
+      if (tab === 'subject') {
+        document.querySelectorAll('.tab-btn')[0].classList.add('active');
+        document.getElementById('subject-tab').style.display = 'block';
+      } else {
+        document.querySelectorAll('.tab-btn')[1].classList.add('active');
+        document.getElementById('absence-tab').style.display = 'block';
+      }
+    }
+
+    function showSubTab(sub) {
+      document.querySelectorAll('.sub-tab-btn').forEach(btn => btn.classList.remove('active'));
+      if (sub === 'present') {
+        document.querySelectorAll('.sub-tab-btn')[0].classList.add('active');
+        document.getElementById('present-view').style.display = 'flex';
+        document.getElementById('overall-view').style.display = 'none';
+      } else {
+        document.querySelectorAll('.sub-tab-btn')[1].classList.add('active');
+        document.getElementById('present-view').style.display = 'none';
+        document.getElementById('overall-view').style.display = 'flex';
+      }
+    }
+
+    // Bar Chart for "Overall"
+    const ctx = document.getElementById('barChart').getContext('2d');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Math', 'Physics', 'Chemistry', 'Biology', 'English'],
+        datasets: [{
+          data: [95, 88, 92, 100, 85],
+          backgroundColor: '#0f75bc'
+        }]
+      },
+      options: {
+        plugins: { legend: { display: false } },
+        scales: { y: { beginAtZero: true, max: 100 } }
+      }
+    });
+  </script>
+</body>
+</html>

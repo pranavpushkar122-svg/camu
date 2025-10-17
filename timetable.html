@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Timetable</title>
+  <link rel="stylesheet" href="style.css">
+  <script>
+    function openMenu(){ 
+      document.getElementById('drawer').classList.add('open'); 
+      document.getElementById('overlay').classList.add('show');
+    }
+    function closeMenu(){ 
+      document.getElementById('drawer').classList.remove('open'); 
+      document.getElementById('overlay').classList.remove('show');
+    }
+    function logout(){
+      window.location.href = "index.html";
+    }
+    document.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape'){ closeMenu(); }
+    });
+    </script>
+</head>
+<body>
+
+
+      
+  <!-- Top navigation -->
+  <header class="profile-header">
+    <button class="menu-btn" aria-label="Open menu" onclick="openMenu()">☰</button>
+    <h1 class="header-title">Bennett University</h1>
+  </header>
+
+  <!-- Overlay -->
+  <div id="overlay" class="overlay" onclick="closeMenu()" aria-hidden="true"></div>
+
+  <!-- Drawer / Side menu -->
+  <aside id="drawer" class="drawer" aria-label="Main menu">
+    <div class="drawer-header">
+      <img src="MY PIC.jpg" alt="Profile" class="drawer-avatar"/>
+      <div>
+        <div class="drawer-name">PRANAV PUSHKAR</div>
+        <div class="drawer-sub">S24CSEU0613</div>
+      </div>
+    </div>
+
+    <nav class="drawer-nav">
+      <button onclick="window.location.href='institution.html'">MY INSTITUTION</button>
+      <button onclick="window.location.href='messages.html'">MESSAGES</button>
+      <button onclick="location.href='attendance.html'">ATTENDANCE</button>
+      <button onclick="location.href='examschedule.html'">EXAM SHEDULES</button>
+      <button onclick="location.href='Reports.html'">REPORTS</button>
+      <button onclick="location.href='progress_report.html'">PROGRESS REPORT</button>
+      <button onclick="location.href='holiday.html'">HOLIDAYS</button>
+      <button onclick="location.href='cafeteria.html'">CAFETERIA</button>
+      <button onclick="location.href='timetable.html'">TIMETABLE</button>
+      <button onclick="location.href='leave.html'">LEAVE AND GATE PASS</button>
+      <button onclick="location.href='services.html'">SERVICES</button>
+      <button onclick="location.href='enrollment.html'">ENROLLMENT</button>
+      <button onclick="location.href='activity.html'">ACTIVITY</button>
+      <button onclick="location.href='Clearance.html'">CLEARANCE</button>
+      <button onclick="location.href='announcement.html'">ANNOUNCEMENT</button>
+      <button onclick="location.href='feedback.html'">FEEDBACK</button>
+      <button onclick="location.href='project.html'">PROJECT</button>
+      <button onclick="location.href='portfolio.html'">E PORTFOLIO</button>
+      <button onclick="location.href='result.html'">FINAL RESULT</button>
+    </nav>
+
+    <div class="drawer-footer">
+      <button class="logout-btn" onclick="logout()">LOG OUT</button>
+    </div>
+  </aside>
+
+
+  
+
+  <!-- Profile Card -->
+  <section class="profile-card">
+    <img src="MY PIC.jpg" alt="Profile Photo" class="profile-img">
+    <div class="profile-info">
+      <h2>PRANAV PUSHKAR</h2>
+      <p>Bennett University</p>
+      <p>Semester - 3 | 2025-2026</p>
+    </div>
+  </section>
+
+
+  
+
+  <div class="container">
+    <h2>Timetable</h2>
+
+    <!-- Semester Info -->
+    <div class="semester-box">
+      Semester - 3 | 2025-2026 <br><br>
+      <button id="refreshBtn" class="btn">🔄 Refresh</button>
+      <button id="weeklyBtn" class="btn btn-blue">Weekly schedule</button>
+    </div>
+
+    <!-- Date Navigation -->
+    <div class="date-nav">
+      <button id="prevDate">◀</button>
+      <span id="currentDate">16 Aug 2025</span>
+      <button id="nextDate">▶</button>
+    </div>
+
+    <!-- Timetable container -->
+    <div id="timetable"></div>
+  </div>
+
+  <!-- Weekly Schedule Modal -->
+  <div id="weeklyModal" class="modal">
+    <button id="closeWeekly" class="btn">Close</button>
+    <div class="modal-content">
+      <h3>Weekly Schedule</h3>
+      <p>Here you can preview all 7 days</p>
+      <div id="weeklySchedule"></div>
+      
+    </div>
+  </div>
+
+  <!-- QR Scanner Modal -->
+  <div id="scannerModal" class="modal">
+    <div class="modal-content">
+      <h3>Scan QR Code</h3>
+      <video id="camera" autoplay></video>
+      <br>
+      <button id="closeScanner" class="btn">Close</button>
+    </div>
+  </div>
+
+  <script>
+    // ---------- DATA ----------
+    const schedules = {
+      0: [ // Sunday
+        { subject: "No Classes", time: "", teacher: "", room: "" }
+      ],
+      1: [ // Monday
+        { subject: "Full Stack Development (CSET218)", time: "09:30 AM - 10:30 AM", teacher: "Ravikant Tyagi", room: "104-N-LH" },
+        { subject: "Database Systems (CSET220)", time: "11:00 AM - 12:00 PM", teacher: "Prof. Sharma", room: "102-N-LH" }
+      ],
+      2: [ // Tuesday
+        { subject: "Data Structures", time: "09:00 AM - 10:00 AM", teacher: "Prof. Gupta", room: "201-N-LH" },
+        { subject: "Mathematics", time: "11:30 AM - 12:30 PM", teacher: "Prof. Rao", room: "202-N-LH" }
+      ],
+      3: [ // Wednesday
+        { subject: "Operating Systems", time: "10:00 AM - 11:00 AM", teacher: "Prof. Das", room: "301-N-LH" }
+      ],
+      4: [ // Thursday
+        { subject: "Computer Networks", time: "09:30 AM - 10:30 AM", teacher: "Prof. Singh", room: "105-N-LH" },
+        { subject: "Full Stack Lab", time: "02:00 PM - 04:00 PM", teacher: "Ravikant Tyagi", room: "Lab-1" }
+      ],
+      5: [ // Friday
+        { subject: "Database Lab", time: "10:30 AM - 12:30 PM", teacher: "Prof. Sharma", room: "Lab-2" }
+      ],
+      6: [ // Saturday
+        { subject: "Project Work", time: "09:00 AM - 11:00 AM", teacher: "Mentor", room: "Innovation Lab" }
+      ]
+    };
+
+    let currentDate = new Date(2025, 7, 16); // 16 Aug 2025
+    const dateSpan = document.getElementById("currentDate");
+    const timetableDiv = document.getElementById("timetable");
+
+    function updateDate() {
+      const options = { day: "2-digit", month: "short", year: "numeric" };
+      dateSpan.textContent = currentDate.toLocaleDateString("en-GB", options);
+      loadTimetable();
+    }
+
+    function loadTimetable() {
+      timetableDiv.innerHTML = "";
+      const day = currentDate.getDay(); // 0=Sun, 1=Mon...
+      const todaySchedule = schedules[day];
+
+      todaySchedule.forEach(cls => {
+        const card = document.createElement("div");
+        card.className = "class-card";
+        card.innerHTML = `
+          <h3>${cls.subject}</h3>
+          <p>${cls.time}</p>
+          <p>${cls.teacher}</p>
+          <p>${cls.room}</p>
+          ${cls.subject !== "No Classes" ? `<button class="attendance-btn">📷 Attendance</button>` : ""}
+        `;
+        timetableDiv.appendChild(card);
+      });
+
+      // attach attendance button handler again
+      document.querySelectorAll(".attendance-btn").forEach(btn => {
+        btn.addEventListener("click", openScanner);
+      });
+    }
+
+    // ---------- DATE SWITCH ----------
+    document.getElementById("prevDate").addEventListener("click", () => {
+      currentDate.setDate(currentDate.getDate() - 1);
+      updateDate();
+    });
+
+    document.getElementById("nextDate").addEventListener("click", () => {
+      currentDate.setDate(currentDate.getDate() + 1);
+      updateDate();
+    });
+
+    // ---------- REFRESH ----------
+    document.getElementById("refreshBtn").addEventListener("click", () => {
+      location.reload();
+    });
+
+    // ---------- WEEKLY MODAL ----------
+    const weeklyModal = document.getElementById("weeklyModal");
+    const weeklyScheduleDiv = document.getElementById("weeklySchedule");
+
+    document.getElementById("weeklyBtn").addEventListener("click", () => {
+      weeklyScheduleDiv.innerHTML = "";
+      Object.keys(schedules).forEach(dayIndex => {
+        const dayName = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"][dayIndex];
+        let html = `<h4>${dayName}</h4>`;
+        schedules[dayIndex].forEach(cls => {
+          html += `<div class="class-card small">
+            <b>${cls.subject}</b><br>
+            ${cls.time} | ${cls.teacher} | ${cls.room}
+          </div>`;
+        });
+        weeklyScheduleDiv.innerHTML += html;
+      });
+      weeklyModal.style.display = "flex";
+    });
+
+    document.getElementById("closeWeekly").addEventListener("click", () => {
+      weeklyModal.style.display = "none";
+    });
+
+    // ---------- QR SCANNER ----------
+    const scannerModal = document.getElementById("scannerModal");
+    const video = document.getElementById("camera");
+
+    async function openScanner() {
+      scannerModal.style.display = "flex";
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+        video.srcObject = stream;
+      } catch (err) {
+        alert("Camera access denied: " + err);
+      }
+    }
+
+    document.getElementById("closeScanner").addEventListener("click", () => {
+      scannerModal.style.display = "none";
+      let stream = video.srcObject;
+      if (stream) {
+        stream.getTracks().forEach(track => track.stop());
+      }
+      video.srcObject = null;
+    });
+
+    updateDate(); // initial load
+  </script>
+</body>
+</html>
