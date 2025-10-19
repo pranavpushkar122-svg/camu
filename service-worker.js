@@ -28,8 +28,8 @@ self.addEventListener('install', event => {
         '/result.html',
         '/services.html',
         '/timetable.html',
-        '/anshika dwivedi.png',
-        '/goggle logo.png'
+        '/anshika dwivedi.jpg',
+        '/goggle logo.jpg'
       ]);
     })
   );
