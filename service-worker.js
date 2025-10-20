@@ -1,7 +1,7 @@
 // Install event — caching your app files
 self.addEventListener('install', event => {
   event.waitUntil(
-    caches.open('camu-cache-v1').then(cache => {
+    caches.open('camu-cache-v2').then(cache => {
       return cache.addAll([
         '/',
         '/index.html',
