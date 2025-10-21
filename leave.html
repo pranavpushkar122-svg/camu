@@ -89,7 +89,49 @@
   </section>
 
   <!-- Summary Cards Container -->
-  <section id="summaryContainer" class="summary-container"></section>
+  <section id="summaryContainer" class="summary-container">
+  <!-- Manual Cards -->
+  <div class="summary-card">
+    <h4>Day Out Pass</h4>
+    <p><strong>DATE:</strong> 17-Aug-2025 to 17-Aug-2025</p>
+    <p><strong>REASON:</strong> Family visit</p>
+    <p><strong>Status:</strong> <span class="status approved">Approved</span></p>
+    <button class="view-btn">View Status</button>
+  </div>
+
+  <div class="summary-card">
+    <h4>Leave</h4>
+    <p><strong>DATE:</strong> 10-Sep-2025 to 12-Sep-2025</p>
+    <p><strong>REASON:</strong> Health issues</p>
+    <p><strong>Status:</strong> <span class="status rejected">Rejected</span></p>
+    <button class="view-btn">View Status</button>
+  </div>
+
+  <div class="summary-card">
+    <h4>Medical Leave</h4>
+    <p><strong>DATE:</strong> 5-Oct-2025 to 7-Oct-2025</p>
+    <p><strong>REASON:</strong> Doctor appointment</p>
+    <p><strong>Status:</strong> <span class="status submitted">Submitted</span></p>
+    <button class="view-btn">View Status</button>
+  </div>
+
+  <div class="summary-card">
+    <h4>On Duty</h4>
+    <p><strong>DATE:</strong> 20-Oct-2025 to 21-Oct-2025</p>
+    <p><strong>REASON:</strong> University event</p>
+    <p><strong>Status:</strong> <span class="status approved">Approved</span></p>
+    <button class="view-btn">View Status</button>
+  </div>
+
+  <div class="summary-card">
+    <h4>Leave Out Pass</h4>
+    <p><strong>DATE:</strong> 2-Nov-2025 to 3-Nov-2025</p>
+    <p><strong>REASON:</strong> Family function</p>
+    <p><strong>Status:</strong> <span class="status submitted">Submitted</span></p>
+    <button class="view-btn">View Status</button>
+  </div>
+</section>
+
 
   <!-- Form Modal -->
   <div id="formModal" class="modal">
@@ -242,7 +284,7 @@
       `;
 
       // Add card
-      summaryContainer.appendChild(card);
+      summaryContainer.prepend(card);
 
       // Reset and close form
       leaveForm.reset();
